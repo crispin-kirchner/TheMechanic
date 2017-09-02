@@ -31,6 +31,7 @@ const CreateOrderButton = Mn.View.extend({
   
   navigateOnClick: function(event) {
     event.preventDefault();
+    MAIN_REGION.show(new CreateNewOrderView());
   }
 });
 
@@ -58,6 +59,10 @@ const MechanicLandingPageView = Mn.View.extend({
     this.showChildView('lookupOrderForm', new LookupOrderFormView());
     this.showChildView('createOrderButton', new CreateOrderButton());
   }
+});
+
+const CreateNewOrderView = Mn.View.extend({
+  template: require('templates/create-new-order-form')
 });
 
 function changePageOnModeSwitch() {
