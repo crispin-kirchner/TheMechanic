@@ -14,7 +14,7 @@ const LookupOrderFormView = Mn.View.extend({
   template: require('templates/lookup-order-form')
 });
 
-const mainRegion = new Mn.Region({
+const MAIN_REGION = new Mn.Region({
   el: 'main.container'
 });
 
@@ -38,6 +38,18 @@ const LandingPageView = Mn.View.extend({
   template: require('templates/landing-page'),
   
   regions: {
+    lookupOrderForm: '#lookup-order-form'
+  },
+  
+  onRender: function() {
+    this.showChildView('lookupOrderForm', new LookupOrderFormView());
+  }
+});
+
+const MechanicLandingPageView = Mn.View.extend({
+  template: require('templates/landing-page-mechanic'),
+  
+  regions: {
     lookupOrderForm: '#lookup-order-form',
     createOrderButton: '#create-order-button'
   },
@@ -48,8 +60,22 @@ const LandingPageView = Mn.View.extend({
   }
 });
 
+function changePageOnModeSwitch() {
+  if(MECHANIC_MODE.get('mechanicMode')) {
+    var view = new MechanicLandingPageView();
+  }
+  else {
+    var view = new LandingPageView();
+  }
+  
+  MAIN_REGION.show(view);
+}
+
 $(() => {
   let mechanicModeToggle = new MechanicModeToggle({MECHANIC_MODE: MECHANIC_MODE});
   mechanicModeToggle.render();
-  mainRegion.show(new LandingPageView({model: MECHANIC_MODE}));
+  
+  MECHANIC_MODE.on('change:mechanicMode', changePageOnModeSwitch);
+  
+  MAIN_REGION.show(new LandingPageView({model: MECHANIC_MODE}));
 });

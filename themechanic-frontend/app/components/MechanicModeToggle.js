@@ -11,7 +11,7 @@ export default Mn.View.extend({
   initialize: function(args) {
     this.MECHANIC_MODE = args.MECHANIC_MODE;
     
-    this.MECHANIC_MODE.on('change', this.onModeChange, this);
+    this.MECHANIC_MODE.on('change:mechanicMode', this.onModeChange, this);
     this.model = new MechanicModeToggleModel();
   },
   
