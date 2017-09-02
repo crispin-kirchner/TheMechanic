@@ -3,26 +3,28 @@
   "description": "Brunch.io application",
   "private": true,
   "author": "Brunch",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": "",
   "scripts": {
-    "start": "LOGGY_STACKS=true brunch watch --server",
+    "start": "brunch watch --server",
     "build": "brunch build --production"
   },
   "dependencies": {
     "backbone": "^1.3.3",
-    "jquery": "^3.2.1"
+    "backbone.marionette": "^3.4.2",
+    "bootstrap": "^4.0.0-beta",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.5"
   },
   "devDependencies": {
-    "auto-reload-brunch": "^2.7.1",
-    "babel-brunch": "~6.0",
-    "babel-preset-latest": "^6",
-    "babel-preset-stage-0": "^6.22.0",
-    "bootstrap": "^3.3.7",
+    "auto-reload-brunch": "^2",
+    "babel-brunch": "^6.1.1",
+    "babel-preset-env": "^1.6.0",
     "brunch": "^2",
     "clean-css-brunch": "^2",
     "copycat-brunch": "^1.1.0",
-    "jquery": "^3.1.1",
-    "uglify-js-brunch": "^2"
+    "uglify-js-brunch": "^2",
+    "underscore-brunch": "^1.4.0"
   }
 }

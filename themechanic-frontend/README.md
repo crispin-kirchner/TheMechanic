@@ -1,13 +1,8 @@
-# Brunch + Babel/ES6 + jQuery + Twitter Bootstrap + Autoreload
+# Brunch app
 
-This is a modern JS skeleton for [Brunch](http://brunch.io).
-
-## Installation
-
-Clone this repo manually or use `brunch new DIRECTORY -s ziogas/brunch-with-es6-jquery-twitter-bootstrap-autoreload`
+This is a HTML5 application, built with [Brunch](http://brunch.io).
 
 ## Getting started
-
 * Install (if you don't have them):
     * [Node.js](http://nodejs.org): `brew install node` on OS X
     * [Brunch](http://brunch.io): `npm install -g brunch`
@@ -19,5 +14,3 @@ Clone this repo manually or use `brunch new DIRECTORY -s ziogas/brunch-with-es6-
     * `public/` dir is fully auto-generated and served by HTTP server.  Write your code in `app/` dir.
     * Place static files you want to be copied from `app/assets/` to `public/`.
     * [Brunch site](http://brunch.io), [Getting started guide](https://github.com/brunch/brunch-guide#readme)
-
-Based by [Modern JS skeleton](https://github.com/brunch/with-es6)
