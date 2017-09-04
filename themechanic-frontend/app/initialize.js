@@ -63,13 +63,19 @@ const CreateNewOrderView = Mn.View.extend({
 });
 
 const RouteController = Mn.Object.extend({
-  initialize: function(application) {
-    this.application = application;
+  initialize: function(options) {
+    $.extend(this, options);
   },
   
   createOrder: function() {
     if(!MECHANIC_MODE.get('mechanicMode')) {
       Backbone.history.navigate('#', {trigger: true, replace: true});
+      
+      this.application.signInPopup({
+        title: 'Sign in required',
+        content: 'Creating an order is only accessible when you are signed in. You can sign in here.'
+      });
+      
       return;
     }
     
@@ -89,6 +95,11 @@ const RouteController = Mn.Object.extend({
     if(!MECHANIC_MODE.get('mechanicMode')) {
       Backbone.history.navigate('#', {trigger: true, replace: true});
       
+      this.application.signInPopup({
+        title: 'Sign in required',
+        content: 'The Mechanic Dashboard is only accessible when you are signed in. You can sign in here.'
+      });
+      
       return;
     }
     
@@ -103,7 +114,7 @@ const Application = Mn.Application.extend({
     let mechanicModeToggle = new MechanicModeToggle({MECHANIC_MODE: MECHANIC_MODE});
     mechanicModeToggle.render();
   
-    let controller = new RouteController(this);
+    let controller = new RouteController({application: this});
     
     let router = new Mn.AppRouter({
       controller: controller,
@@ -116,6 +127,19 @@ const Application = Mn.Application.extend({
     });
     
     Backbone.history.start();
+  },
+  
+  signInPopup: function(options) {
+    $('#mechanic-mode-toggle')
+    .popover($.extend({
+      placement: 'bottom',
+      trigger: 'focus'
+    }, options))
+    .on('hidden.bs.popover', function() {
+      $(this).popover('dispose');
+    });
+    
+    $('#mechanic-mode-toggle a').focus();
   }
 });
 
