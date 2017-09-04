@@ -1,7 +1,8 @@
 const MechanicModeToggleModel = Backbone.Model.extend({
   defaults: {
     icon: 'in',
-    linkState: ''
+    linkState: '',
+    href: '#mechanic-dashboard'
   }
 });
 
@@ -20,7 +21,8 @@ export default Mn.View.extend({
     
     this.model.set({
       icon:      mode ? 'out' : 'in',
-      linkState: mode ? 'active' : ''
+      linkState: mode ? 'active' : '',
+      href:      mode ? '#' : '#mechanic-dashboard'
     });
   },
   
@@ -31,7 +33,6 @@ export default Mn.View.extend({
   modelEvents: { 'change': 'render' },
   
   toggleOnClick: function(event) {
-    event.preventDefault();
     this.MECHANIC_MODE.toggle();
   }
 });

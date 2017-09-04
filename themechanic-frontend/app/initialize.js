@@ -14,24 +14,21 @@ const LookupOrderFormView = Mn.View.extend({
   template: require('templates/lookup-order-form')
 });
 
-const MAIN_REGION = new Mn.Region({
-  el: 'main.container'
-});
-
-const CreateOrderButton = Mn.View.extend({
+const CreateOrderButtonView = Mn.View.extend({
   template: require('templates/create-order-button'),
   
+  // set the container of the view to 100% such that the button will
+  // also have the full column height
   attributes: {
     style: 'height:100%;'
   },
   
   events: {
-    'click button': 'navigateOnClick'
+    'click button': 'navigateToForm'
   },
   
-  navigateOnClick: function(event) {
-    event.preventDefault();
-    MAIN_REGION.show(new CreateNewOrderView());
+  navigateToForm: function() {
+    location.href = '#create-order';
   }
 });
 
@@ -57,7 +54,7 @@ const MechanicLandingPageView = Mn.View.extend({
   
   onRender: function() {
     this.showChildView('lookupOrderForm', new LookupOrderFormView());
-    this.showChildView('createOrderButton', new CreateOrderButton());
+    this.showChildView('createOrderButton', new CreateOrderButtonView());
   }
 });
 
@@ -65,22 +62,64 @@ const CreateNewOrderView = Mn.View.extend({
   template: require('templates/create-new-order-form')
 });
 
-function changePageOnModeSwitch() {
-  if(MECHANIC_MODE.get('mechanicMode')) {
-    var view = new MechanicLandingPageView();
-  }
-  else {
-    var view = new LandingPageView();
-  }
+const RouteController = Mn.Object.extend({
+  initialize: function(application) {
+    this.application = application;
+  },
   
-  MAIN_REGION.show(view);
-}
+  createOrder: function() {
+    if(!MECHANIC_MODE.get('mechanicMode')) {
+      Backbone.history.navigate('#', {trigger: true, replace: true});
+      return;
+    }
+    
+    this.application.showView(new CreateNewOrderView());
+  },
+  
+  dashboard: function() {
+    if(MECHANIC_MODE.get('mechanicMode')) {
+      Backbone.history.navigate('#mechanic-dashboard', {trigger: true, replace: true});
+      return;
+    }
+    
+    this.application.showView(new LandingPageView());
+  },
+  
+  mechanicDashboard: function() {
+    if(!MECHANIC_MODE.get('mechanicMode')) {
+      Backbone.history.navigate('#', {trigger: true, replace: true});
+      
+      return;
+    }
+    
+    this.application.showView(new MechanicLandingPageView());
+  }
+});
+
+const Application = Mn.Application.extend({
+  region: 'main.container',
+  
+  onStart: function() {
+    let mechanicModeToggle = new MechanicModeToggle({MECHANIC_MODE: MECHANIC_MODE});
+    mechanicModeToggle.render();
+  
+    let controller = new RouteController(this);
+    
+    let router = new Mn.AppRouter({
+      controller: controller,
+      
+      appRoutes: {
+        '': 'dashboard',
+        'mechanic-dashboard': 'mechanicDashboard',
+        'create-order': 'createOrder'
+      }
+    });
+    
+    Backbone.history.start();
+  }
+});
 
 $(() => {
-  let mechanicModeToggle = new MechanicModeToggle({MECHANIC_MODE: MECHANIC_MODE});
-  mechanicModeToggle.render();
-  
-  MECHANIC_MODE.on('change:mechanicMode', changePageOnModeSwitch);
-  
-  MAIN_REGION.show(new LandingPageView({model: MECHANIC_MODE}));
+  let app = new Application();
+  app.start();
 });
