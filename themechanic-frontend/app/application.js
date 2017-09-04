@@ -1,5 +1,6 @@
 import RouteController from 'route-controller';
 import MechanicModeToggle from 'views/sign-in-button';
+import SigninAlert from 'views/signin-alert';
 
 const AuthorizationPlaceholder = Backbone.Model.extend({
   mechanicMode: false,
@@ -39,16 +40,15 @@ export default Mn.Application.extend({
   },
   
   signInPopup: function(options) {
-    let popoverOptions = $.extend({
-      title: 'Sign in required',
+    let signinAlert = new SigninAlert({ model: new Backbone.Model({text: options.content}) })
+    .render()
+    .on('closed.bs.alert', () => {signinAlert.remove();});
+    
+    $('#mechanic-mode-toggle a').popover({
+      content: 'You can sign in here',
       placement: 'bottom',
       trigger: 'focus'
-    }, options);
-    
-    popoverOptions.content += ' You can sign in here.';
-    
-    $('#mechanic-mode-toggle')
-    .popover(popoverOptions)
+    })
     .on('hidden.bs.popover', function() {
       $(this).popover('dispose');
     });

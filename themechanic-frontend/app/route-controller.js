@@ -12,7 +12,7 @@ export default Mn.Object.extend({
       Backbone.history.navigate('#', {trigger: true, replace: true});
       
       this.application.signInPopup({
-        content: 'Creating an order is only accessible when you are signed in.'
+        content: 'Creating an order is only possible when you are signed in.'
       });
       
       return;
