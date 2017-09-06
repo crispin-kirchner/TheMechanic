@@ -44,7 +44,7 @@ export default Mn.Application.extend({
     .render()
     .on('closed.bs.alert', () => {signinAlert.remove();});
     
-    $('#mechanic-mode-toggle a').popover({
+    $('#sign-in-button a').popover({
       content: 'You can sign in here',
       placement: 'bottom',
       trigger: 'focus'
@@ -53,6 +53,6 @@ export default Mn.Application.extend({
       $(this).popover('dispose');
     });
     
-    $('#mechanic-mode-toggle a').focus();
+    $('#sign-in-button a').focus();
   }
 });

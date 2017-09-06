@@ -7,7 +7,7 @@ const SignInButtonModel = Backbone.Model.extend({
 });
 
 export default Mn.View.extend({
-  el: '#mechanic-mode-toggle',
+  el: '#sign-in-button',
   
   initialize: function(options) {
     $.extend(this, options);

@@ -113,7 +113,7 @@ describe('Page', function() {
   
   it('should react on sign in', function(done) {
     var findSignIn = () => {
-      return this.driver.findElement(By.css('#mechanic-mode-toggle a'));
+      return this.driver.findElement(By.css('#sign-in-button a'));
     }
     
     goTo(this.driver).then(() => {
