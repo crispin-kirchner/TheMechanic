@@ -1,4 +1,6 @@
-# Brunch app
+# TheMechanic Frontend
+
+Repair order tracking for bicycle stores, frontend. Not ready for production.
 
 This is a HTML5 application, built with [Brunch](http://brunch.io).
 
@@ -6,11 +8,15 @@ This is a HTML5 application, built with [Brunch](http://brunch.io).
 * Install (if you don't have them):
     * [Node.js](http://nodejs.org): `brew install node` on OS X
     * [Brunch](http://brunch.io): `npm install -g brunch`
-    * Brunch plugins and app dependencies: `npm install`
-* Run:
-    * `npm start` — watches the project with continuous rebuild. This will also launch HTTP server with [pushState](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history).
-    * `npm run build` — builds minified project for production
-* Learn:
-    * `public/` dir is fully auto-generated and served by HTTP server.  Write your code in `app/` dir.
-    * Place static files you want to be copied from `app/assets/` to `public/`.
-    * [Brunch site](http://brunch.io), [Getting started guide](https://github.com/brunch/brunch-guide#readme)
+    * [Jasmine](https://jasmine.github.io/); `npm install -g jasmine`
+    * [Geckodriver](https://github.com/mozilla/geckodriver/releases) for integration tests
+    * App dependencies: `npm install`
+* Commands:
+    * `npm test` -- run tests
+    * `npm start` — serves the project with continuous rebuild on http://localhost:3333
+    * `npm build` — builds minified project for production
+* Project structure:
+    * `app/` contains the source code
+    * `spec/` holds test cases
+    * `public/` dir is the generated code served by the HTTP server. 
+    
