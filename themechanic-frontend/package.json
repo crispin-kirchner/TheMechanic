@@ -30,6 +30,8 @@
     "jasmine": "^2.8.0",
     "selenium-webdriver": "^3.5.0",
     "uglify-js-brunch": "^2",
-    "underscore-brunch": "^1.4.0"
+    "underscore-brunch": "^1.4.0",
+    "selenium-drivers": "^2.1.0",
+    "tar.gz": "^1.0.5"
   }
 }
