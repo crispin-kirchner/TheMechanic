@@ -6,13 +6,13 @@ This is a HTML5 application, built with [Brunch](http://brunch.io).
 
 ## Getting started
 * Install (if you don't have them):
-    * [Node.js](http://nodejs.org): `brew install node` on OS X
+    * [Node.js](http://nodejs.org)
     * [Brunch](http://brunch.io): `npm install -g brunch`
     * [Jasmine](https://jasmine.github.io/); `npm install -g jasmine`
     * [Geckodriver](https://github.com/mozilla/geckodriver/releases) for integration tests
     * App dependencies: `npm install`
 * Commands:
-    * `npm test` -- run tests
+    * `npm test` — runs tests
     * `npm start` — serves the project with continuous rebuild on http://localhost:3333
     * `npm build` — builds minified project for production
 * Project structure:
