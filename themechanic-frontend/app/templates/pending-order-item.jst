@@ -1,0 +1,3 @@
+<td class="w-25 d-none d-md-table-cell"><%= bicycle %></td>
+<td><span class="text-secondary d-md-none"><%= bicycle %><br></span><%= repairRequests %></td>
+<td class="text-nowrap"><% let date = new Date(checkInDate); print(date.toLocaleDateString()) %><span class="d-md-none"><br></span><span class="d-none d-md-inline">, </span><% print(date.toLocaleTimeString()); %></td>

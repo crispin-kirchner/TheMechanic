@@ -1,3 +1,5 @@
+import { Order } from 'models/order';
+
 function toObject(serializedArray) {
   var result = {};
   
@@ -7,14 +9,6 @@ function toObject(serializedArray) {
   
   return result;
 }
-
-const Order = Backbone.Model.extend({
-  defaults: function() {
-    return { checkInDate: new Date() };
-  },
-  
-  urlRoot: 'http://localhost:1337/order'
-});
 
 export default Mn.View.extend({
   template: require('templates/create-new-order-form'),

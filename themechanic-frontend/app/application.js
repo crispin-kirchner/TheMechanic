@@ -40,9 +40,9 @@ export default Mn.Application.extend({
   },
   
   signInPopup: function(options) {
-    let signinAlert = new SigninAlert({ model: new Backbone.Model({text: options.content}) })
-    .render()
-    .on('closed.bs.alert', () => {signinAlert.remove();});
+    let signinAlert = new SigninAlert({ model: new Backbone.Model( {text: options.content} ) })
+      .render()
+      .on('closed.bs.alert', () => {signinAlert.remove();});
     
     $('#sign-in-button a').popover({
       content: 'You can sign in here',

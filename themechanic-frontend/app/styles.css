@@ -1,3 +1,7 @@
 body {
   padding-top:70px;
 }
+
+#pending-orders-list td:last-child {
+  width: 1%;
+}
