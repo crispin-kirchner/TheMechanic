@@ -17,13 +17,39 @@ export default Mn.View.extend({
     'submit form': 'postToBackend'
   },
   
+  ui: {
+    create: '#submit'
+  },
+  
+  disableCreateButton: function() {
+    var createButton = this.getUI('create');
+    createButton.attr('disabled', 'disabled');
+    createButton.attr('aria-disabled', 'true');
+  },
+  
+  enableCreateButton: function() {
+    var createButton = this.getUI('create');
+    createButton.removeAttr('disabled');
+    createButton.removeAttr('aria-disabled');
+  },
+  
   postToBackend: function(event) {
-    event.preventDefault();
+    this.disableCreateButton();
     
     // gather data from the form
     var formData = toObject( $(event.target).serializeArray() );
     
     // POST to backend
-    new Order(formData).save();
+    var newOrder = new Order(formData);
+    newOrder.save()
+      .done(() => {
+        console.log('successfully created order. Number: ' + newOrder.get('number'));
+      })
+      .fail(() => {
+        console.log('failed creating order, please try again later');
+        enableCreateButton();
+      });
+      
+    event.preventDefault();
   }
 });
