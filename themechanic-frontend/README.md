@@ -9,14 +9,13 @@ This is a HTML5 application, built with [Brunch](http://brunch.io).
     * [Node.js](http://nodejs.org)
     * [Brunch](http://brunch.io): `npm install -g brunch`
     * [Jasmine](https://jasmine.github.io/); `npm install -g jasmine`
-    * [Geckodriver](https://github.com/mozilla/geckodriver/releases) for integration tests
     * App dependencies: `npm install`
 * Commands:
-    * `npm test` — runs tests
-    * `npm start` — serves the project with continuous rebuild on http://localhost:3333
-    * `npm build` — builds minified project for production
+    * `npm test` — run tests
+    * `npm start` — serve the project with continuous rebuild on http://localhost:3333
+    * `npm build` — build minified project for production
 * Project structure:
-    * `app/` contains the source code
-    * `spec/` holds test cases
-    * `public/` dir is the generated code served by the HTTP server. 
+    * `app/` source code
+    * `spec/` test cases
+    * `public/` generated code served by the HTTP server. 
     
